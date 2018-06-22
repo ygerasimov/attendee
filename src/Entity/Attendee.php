@@ -91,7 +91,7 @@ class Attendee extends ContentEntityBase {
     $fields['experience'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Experience'))
       ->setDescription(t('How many years you are using Drupal?'))
-      ->setRequired(TRUE)
+      ->addConstraint('drupal_experience')
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('form', [
         'type' => 'number',
