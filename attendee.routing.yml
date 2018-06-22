@@ -29,11 +29,3 @@ entity.attendee.delete_form:
     _title: 'Edit Attendee'
   requirements:
     _permission: 'administer attendees'
-
-entity.attendee.collection:
-  path: '/attendee/list'
-  defaults:
-    _entity_list: 'attendee'
-    _title: 'Attendee List'
-  requirements:
-    _permission: 'administer attendees'

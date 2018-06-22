@@ -20,7 +20,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
- *     "list_builder" = "Drupal\attendee\AttendeeListBuilder",
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *   },
  *   base_table = "attendee",
  *   data_table = "attendee_field_data",
@@ -107,6 +107,23 @@ class Attendee extends ContentEntityBase {
    */
   public function label() {
     return $this->name->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toUrl($rel = 'canonical', array $options = []) {
+    if ($rel == 'collection') {
+      $uri = new Url('view.attendees.page_1');
+      // Pass the entity data through as options, so that alter functions do not
+      // need to look up this entity again.
+      $uri
+        ->setOption('entity_type', $this->getEntityTypeId())
+        ->setOption('entity', $this);
+      return $uri;
+    }
+
+    return parent::toUrl($rel, $options);
   }
 
   /**

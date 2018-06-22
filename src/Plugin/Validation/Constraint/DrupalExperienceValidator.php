@@ -15,7 +15,8 @@ class DrupalExperienceValidator extends ConstraintValidator {
    */
   public function validate($items, Constraint $constraint) {
     foreach ($items as $item) {
-      if ($item->value > format_date(REQUEST_TIME, 'Y') - 2000) {
+      $dateDiff = (int) format_date(REQUEST_TIME, 'custom', 'Y') - 2000;
+      if ($item->value > $dateDiff) {
         $this->context->addViolation($constraint->message);
       }
     }
