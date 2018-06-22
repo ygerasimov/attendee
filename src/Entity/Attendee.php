@@ -3,9 +3,9 @@
 namespace Drupal\attendee\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-
 
 /**
  * Defines the Attendee entity type.
@@ -40,6 +40,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 class Attendee extends ContentEntityBase {
 
+  use EntityChangedTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -64,6 +66,7 @@ class Attendee extends ContentEntityBase {
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('form', [
         'type' => 'options_select',
+        'weight' => 1,
       ]);
 
     $fields['bio'] = BaseFieldDefinition::create('entity_reference')
@@ -76,6 +79,23 @@ class Attendee extends ContentEntityBase {
         'settings' => [
           'placeholder' => t('Select if you created dedicated Bio page'),
         ],
+        'weight' => 15,
+      ]);
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel(t('Changed'))
+      ->setDescription(t('The time that the node was last edited.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE);
+
+    $fields['experience'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Experience'))
+      ->setDescription(t('How many years you are using Drupal?'))
+      ->setRequired(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+        'weight' => 2,
       ]);
 
     return $fields;
