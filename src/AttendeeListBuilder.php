@@ -15,7 +15,7 @@ class AttendeeListBuilder extends EntityListBuilder {
     $rows['seniority'] = $this->t('Seniority');
     $rows['bio'] = $this->t('Bio');
 
-    return $rows + parent::buildHeader();;
+    return $rows + parent::buildHeader();
   }
 
   /**
