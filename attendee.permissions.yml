@@ -1,0 +1,3 @@
+administer attendees:
+  title: 'Administer attendees'
+  restrict access: true
