@@ -3,3 +3,5 @@ description: Demo module for presentation.
 package: Presentation
 type: module
 core: 8.x
+dependencies:
+  - text
