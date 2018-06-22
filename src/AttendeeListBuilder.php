@@ -31,7 +31,7 @@ class AttendeeListBuilder extends EntityListBuilder {
       '#url' => $bio->toUrl(),
     ];
 
-    return $row + parent:: buildRow($entity);;
+    return $row + parent:: buildRow($entity);
   }
 
 }
