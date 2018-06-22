@@ -2,6 +2,7 @@
 
 namespace Drupal\attendee;
 
+use Drupal\attendee\Entity\Attendee;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
@@ -23,7 +24,7 @@ class AttendeeListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     $row['name'] = $entity->name->value;
-    $row['seniority'] = $entity->seniority->value;
+    $row['seniority'] = Attendee::getSeniorityOptions()[$entity->seniority->value];
     $bio = $entity->bio->entity;
     $row['bio']['data'] = [
       '#type' => 'link',
